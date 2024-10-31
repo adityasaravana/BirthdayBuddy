@@ -1,6 +1,24 @@
 {
-  "originHash" : "72e7d073b2eeaf7aeaa7bbe0b06670a0d8808443b442d24da1d7e0dc34c9914d",
+  "originHash" : "d425baae70e44a62490c497c62d37a035b4981cbb96a23c2e37178220a6a234a",
   "pins" : [
+    {
+      "identity" : "defaults",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/Defaults.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "a89f799930c92a85aa04b72131849d46c0833ab3"
+      }
+    },
+    {
+      "identity" : "swiftuimessage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/edonv/SwiftUIMessage.git",
+      "state" : {
+        "revision" : "17027d2151f0d6961eb48abd934341ea1794efd1",
+        "version" : "0.0.4"
+      }
+    },
     {
       "identity" : "swiftycontacts",
       "kind" : "remoteSourceControl",

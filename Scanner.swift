@@ -8,6 +8,8 @@
 import Foundation
 import SwiftyContacts
 import Contacts
+import Defaults
+import UIKit
 
 class Scanner: ObservableObject {
     @Published var contactsWithoutBirthdays: [CNContact] = []
@@ -39,12 +41,16 @@ class Scanner: ObservableObject {
         
         if let people = contacts {
             for contact in people {
-                if contact.birthday == nil {
+                if contact.birthday == nil && !Defaults[.ignoredContacts].contains(contact.identifier) {
                     newContactsWithoutBirthdays.append(contact)
                 }
             }
         }
         
-        contactsWithoutBirthdays = newContactsWithoutBirthdays.sorted { $0.givenName < $1.givenName }
+        
+        
+        DispatchQueue.main.async {
+            self.contactsWithoutBirthdays = newContactsWithoutBirthdays.sorted { $0.givenName < $1.givenName }
+        }
     }
 }

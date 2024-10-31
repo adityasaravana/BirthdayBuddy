@@ -9,11 +9,15 @@
 /* Begin PBXBuildFile section */
 		6BFF29B12CD3409E00EE72D7 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFF29B02CD3409E00EE72D7 /* Scanner.swift */; };
 		6BFF29B42CD340E600EE72D7 /* SwiftyContacts in Frameworks */ = {isa = PBXBuildFile; productRef = 6BFF29B32CD340E600EE72D7 /* SwiftyContacts */; };
+		6BFF29B72CD34B8500EE72D7 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 6BFF29B62CD34B8500EE72D7 /* Defaults */; };
+		6BFF29B92CD34B8B00EE72D7 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFF29B82CD34B8B00EE72D7 /* Defaults.swift */; };
+		6BFF29BC2CD34DDB00EE72D7 /* SwiftUIMessage in Frameworks */ = {isa = PBXBuildFile; productRef = 6BFF29BB2CD34DDB00EE72D7 /* SwiftUIMessage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6BFF29942CD33E9500EE72D7 /* BirthdayBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirthdayBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BFF29B02CD3409E00EE72D7 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
+		6BFF29B82CD34B8B00EE72D7 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -29,6 +33,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BFF29B72CD34B8500EE72D7 /* Defaults in Frameworks */,
+				6BFF29BC2CD34DDB00EE72D7 /* SwiftUIMessage in Frameworks */,
 				6BFF29B42CD340E600EE72D7 /* SwiftyContacts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -39,6 +45,7 @@
 		6BFF298B2CD33E9500EE72D7 = {
 			isa = PBXGroup;
 			children = (
+				6BFF29B82CD34B8B00EE72D7 /* Defaults.swift */,
 				6BFF29B02CD3409E00EE72D7 /* Scanner.swift */,
 				6BFF29962CD33E9500EE72D7 /* BirthdayBuddy */,
 				6BFF29952CD33E9500EE72D7 /* Products */,
@@ -74,6 +81,8 @@
 			name = BirthdayBuddy;
 			packageProductDependencies = (
 				6BFF29B32CD340E600EE72D7 /* SwiftyContacts */,
+				6BFF29B62CD34B8500EE72D7 /* Defaults */,
+				6BFF29BB2CD34DDB00EE72D7 /* SwiftUIMessage */,
 			);
 			productName = BirthdayBuddy;
 			productReference = 6BFF29942CD33E9500EE72D7 /* BirthdayBuddy.app */;
@@ -105,6 +114,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				6BFF29B22CD340E600EE72D7 /* XCRemoteSwiftPackageReference "SwiftyContacts" */,
+				6BFF29B52CD34B8500EE72D7 /* XCRemoteSwiftPackageReference "Defaults" */,
+				6BFF29BA2CD34DDB00EE72D7 /* XCRemoteSwiftPackageReference "SwiftUIMessage" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6BFF29952CD33E9500EE72D7 /* Products */;
@@ -131,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BFF29B92CD34B8B00EE72D7 /* Defaults.swift in Sources */,
 				6BFF29B12CD3409E00EE72D7 /* Scanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,6 +376,22 @@
 				minimumVersion = 4.0.2;
 			};
 		};
+		6BFF29B52CD34B8500EE72D7 /* XCRemoteSwiftPackageReference "Defaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Defaults.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		6BFF29BA2CD34DDB00EE72D7 /* XCRemoteSwiftPackageReference "SwiftUIMessage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/edonv/SwiftUIMessage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -371,6 +399,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6BFF29B22CD340E600EE72D7 /* XCRemoteSwiftPackageReference "SwiftyContacts" */;
 			productName = SwiftyContacts;
+		};
+		6BFF29B62CD34B8500EE72D7 /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6BFF29B52CD34B8500EE72D7 /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+		6BFF29BB2CD34DDB00EE72D7 /* SwiftUIMessage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6BFF29BA2CD34DDB00EE72D7 /* XCRemoteSwiftPackageReference "SwiftUIMessage" */;
+			productName = SwiftUIMessage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

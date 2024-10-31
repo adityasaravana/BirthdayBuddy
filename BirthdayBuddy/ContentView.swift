@@ -1,17 +1,28 @@
-//
-//  ContentView.swift
-//  BirthdayBuddy
-//
-//  Created by Aditya Saravana on 10/30/24.
-//
-
 import SwiftUI
 import Contacts
+import Defaults
+import SwiftUIMessage
 
 struct ContentView: View {
     @EnvironmentObject var scanner: Scanner
+
+    @Default(.ignoredContacts) var ignoredContacts
+
     @State private var searchText = ""
     @State private var groupedContacts: [String: [CNContact]] = [:]
+
+    struct MessageRecipient: Identifiable {
+        let id = UUID()
+        let phoneNumber: String
+        let name: String
+    }
+    
+    @State private var selectedMessageRecipient: MessageRecipient? = nil
+
+    func refresh() async {
+        await scanner.scan()
+        groupContacts()
+    }
 
     var body: some View {
         NavigationStack {
@@ -26,16 +37,51 @@ struct ContentView: View {
                 
                 ForEach(groupedContacts.keys.sorted(), id: \.self) { key in
                     Section(header: Text(key)) {
-                        ForEach(groupedContacts[key]!, id: \.identifier) { contact in
+                        ForEach(groupedContacts[key] ?? [], id: \.identifier) { contact in
                             Text(contact.givenName + " " + contact.familyName)
+                                .swipeActions(edge: .trailing) {
+                                    if let firstPhoneNumber = contact.phoneNumbers.first?.value.stringValue {
+                                        Button {
+                                            selectedMessageRecipient = MessageRecipient(phoneNumber: firstPhoneNumber, name: contact.givenName)
+                                        } label: {
+                                            Label("Message", systemImage: "message.fill")
+                                        }
+                                        .tint(.green)
+                                        
+                                        
+                                        Button(role: .destructive) {
+                                            ignoredContacts.append(contact.identifier)
+                                            Task {
+                                                await refresh()
+                                            }
+                                        } label: {
+                                            Label("Ignore", systemImage: "eye.slash")
+                                        }
+                                    }
+                                }
+                                .sheet(item: $selectedMessageRecipient) { messageRecipient in
+                                    if MessageComposeView.canSendText() {
+                                        MessageComposeView(
+                                            .init(recipients: [messageRecipient.phoneNumber], body: "Hey \(messageRecipient.name), when's your birthday? I'm trying to add everyone's birthdays to my contacts")
+                                        )
+                                        .ignoresSafeArea()
+                                    } else {
+                                        // Here you can tell the user the issue.
+                                        Text("Text messages cannot be sent from your device.")
+                                    }
+                                }
+                                
                         }
+                        
                     }
                 }
             }
             .navigationTitle("BirthdayBuddy")
             .refreshable {
-                await scanner.scan()
-                groupContacts()
+                await refresh()
+            }
+            .task {
+                await refresh()
             }
             .searchable(text: $searchText, prompt: "Search")
             .onAppear {
